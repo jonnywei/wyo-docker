@@ -10,11 +10,11 @@ import (
 func main() {
 
 	cmd := exec.Command("/bin/bash")
-	cmd.SysProcAttr = &syscall.SysProcAttr{Cloneflags: syscall.CLONE_NEWUTS}
+	cmd.SysProcAttr = &syscall.SysProcAttr{Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWIPC,}
 
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
-	// cmd.Stderr = os.Stderr
+//        cmd.Stderr = os.Stderr
 
 	if error := cmd.Run(); error != nil {
 		log.Fatal(error)
